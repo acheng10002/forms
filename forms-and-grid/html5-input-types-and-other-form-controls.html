@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>HTML5 input types and Other form controls</title>
+    <link rel="stylesheet" href="html5-input-types-and-other-form-controls.css">
+  </head>
+  <body>
+    <form>
+        <h1>Email address field</h1>
+        <p>
+            <label for="email"><span>Email:</span></label>
+            <input type="email" id="email" name="email">
+        </p>
+        <br>
+        <br>
+        <br>
+        <h1>Search field</h1>
+        <!-- search fields are often rendered with rounded corners
+             they also sometimes display an "x" which clears the field of any value when clicked
+             on devices with dynamic keyboards, the keyboard's enter key may read "search", 
+             or display a magnifying glass icon -->
+        <input type="search" id="search" name="search">
+        <br>
+        <br>
+        <br>
+        <h1>Phone number field</h1>
+        <input type="tel" id="tel" name="tel">
+        <br>
+        <br>
+        <br>
+        <h1>URL field</h1>
+        <input type="url" id="url" name="url">
+        <br>
+        <br>
+        <br>
+        <h1>Numeric field</h1>
+        <!-- allows only floating-point numbers
+             usually provides buttons in the form of a spinner to 
+             increase and decrease the value of the control 
+             I can constrain the min and max allowed by setting the min and max attributes 
+             step attribute sets the increment increase and decrease caused
+             by pressing the spinner button
+             to allow float numbers, specify step="any"
+             step attribute defaults to 1 meaning only whole numbers are valid -->
+        <!-- number control whose value is restricted to any value between 1 and 10, 
+             and whose increase and decrease buttons change its value by 2 -->
+        <input type="number" name="age" id="age" min="1" max="10" step="2">
+        <br>
+        <br>
+        <!-- number control whose value is restricted to any value
+             between o and 1 inclusive, and whose increase and 
+             decrease buttons change its value by 0.01 -->
+        <input type="number" name="change" id="pennies" min="0" max="1" step="0.01" />
+        <br>
+        <br>
+        <br>
+        <h1>Slider controls</h1>
+        <label for="price">Choose a maximum house price: </label>
+        <!-- slider tha ranges bt 50000 and 500000, increments/decrements by 100 
+             default value of 250000 -->
+        <input
+            type="range"
+            name="price"
+            id="price"
+            min="50000"
+            max="500000"
+            step="100"
+            value="250000">
+        <!-- output element contains the current value since sliders 
+             don't offer any kind of visual feedback as to what the 
+             current value is-->
+        <!-- output is like label, it can take a for attribute that 
+             lets me associate it with the element or elements that
+             the output value came from-->
+        <output class="price-output" for="price"></output>
+        <br>
+        <br>
+        <br>
+        <h1>Date and time pickers</h1>
+        <h1>datetime-local</h1>
+        <!-- type="datetime-local" creates a widget to display and pick a date with time with no specific time zone info -->
+        <input type="datetime-local" name="datetime" id="datetime">
+        <br>
+        <h1>month</h1>
+        <!-- type="month" creates a widget to display and pick a month with a year -->
+        <input type="month" name="month" id="month">
+        <br>
+        <h1>time</h1>
+        <!-- type="time" creates a widget to display and pick a time value;
+             the time may display in 12 hour format, the value returned is in 24 hour format -->
+        <input type="time" name="time" id="time">
+        <br>
+        <h1>week</h1>
+        <!-- type="week" creates a widget to display and pick a week number and its year -->
+        <input type="week" name="week" id="week">
+        <br>
+        <h1>Constraining date/time values</h1>
+        <label for="myDate">When are you available this summer?</label>
+        <!-- all date and time controls can be constrained using min, max, and step attributes-->
+        <input
+            type="date"
+            name="myDate"
+            min="2013-06-01"
+            max="2013-08-31"
+            step="7"
+            id="myDate">
+        <br>
+        <h1>Color picker control</h1>
+        <!-- clicking a color control displays the OS's default color-picking functionality for me to choose 
+             the value returned is always a lowercase 6-value hexadecimal color -->
+        <input type="color" name="color" id="color">
+        <br>
+        <br>
+        <br>
+        <h1>HTML controls 1</h1>
+        <h2>Edit your preferences</h2>
+        <ul>
+            <li>
+                <label for="e-mail">Email</label>
+                <input type="email" id="e-mail" name="e-mail">
+            </li>
+            <li>
+                <label for="website">Website</label>
+                <input type="url" id="website" name="website">
+            </li>
+            <li>
+                <label for="phone">Phone number</label>
+                <input type="tel" id="phone" name="phone">
+            </li>
+            <li>
+                <label for="fave-color">Favorite color</label>
+                <input type="color" id="fave-color" name+"fave-color">
+            </li>
+            <li>
+                <button>Update preferences</button>
+            </li>
+        </ul>
+        <br>
+        <br>
+        <br>
+        <h1>HTML controls 2</h1>
+        <ul>
+            <li>
+                <label for="max-invite">Select maximum number of invitations</label>
+                <input
+                    type="range"
+                    name="max-invite"
+                    id="max-invite"
+                    min="1"
+                    max="30"
+                    step="1"
+                    value="10">
+                <output class="invite-output" for="max-invite"></output>
+            </li>
+            <li>
+                <button>Submit</button>
+            </li>
+        </ul>
+        <br>
+        <br>
+        <br>
+        <h1>Multi-line text fields</h1>
+        <!-- remember, all text content inside a textarea is plain text content 
+             contenteditable, provides an API for capturing HTML/rich content -->
+        <textarea cols="30" rows="8"></textarea>
+        <br>
+        <br>
+        <br>
+        <h1>Dropdown controls</h1>
+        <h1>Select box</h1>
+        <select id="groups" name="groups">
+            <!-- value of the optgroup label attribute is displayed before the values of the nested options -->
+            <optgroup label="fruits">
+              <option>Banana</option>
+              <option selected>Cherry</option>
+              <option>Lemon</option>
+            </optgroup>
+            <optgroup label="vegetables">
+              <option>Carrot</option>
+              <option>Eggplant</option>
+              <option>Potato</option>
+            </optgroup>
+
+        </select>
+        <br>
+        <br>
+        <!-- option with a value attribute gets that value sent when the form is submitted
+             if the value attribute is omittedd, the content of the option is used as the value -->
+        <!-- select's optional size attribute lets me control how many options are visible when the select does not have focus -->
+        <select id="simple" name="simple">
+            <option value="banana">Big, beautiful yellow banana</option>
+            <option value="cherry">Succulent, juicy cherry</option>
+            <option value="lemon">Sharp, powerful lemon</option>
+        </select>
+        <br>
+        <br>
+        <h1>Multiple choice select box</h1>
+        <!-- select's multiple attribute allows users to select several values -->
+        <select id="multi" name="multi" multiple size="2">
+            <optgroup label="fruits">
+              <option>Banana</option>
+              <option selected>Cherry</option>
+              <option>Lemon</option>
+            </optgroup>
+            <optgroup label="vegetables">
+              <option>Carrot</option>
+              <option>Eggplant</option>
+              <option>Potato</option>
+            </optgroup>
+          </select>
+          <br>
+          <br>
+          <h1>Autocomplete box</h1>
+          <label for="myFruit">What's your favorite fruit?</label>
+          <!-- input's list attribute binds the datalist element to the input -->
+          <input type="text" name="myFruit" id="myFruit" list="mySuggestion">
+          <!-- datalist element with child option elements provides suggested, auto-completed values
+               datalist must have an id attribute -->
+          <!-- presented to the user as a dropdown box listing possible matches for what they've typed into the input -->
+          <datalist id="mySuggestion">
+            <option>Apple</option>
+            <option>Banana</option>
+            <option>Blackberry</option>
+            <option>Blueberry</option>
+            <option>Lemon</option>
+            <option>Lychee</option>
+            <option>Peach</option>
+            <option>Pear</option>
+          </datalist>
+          <br>
+          <br>
+          <h1>Datalist support and fallbacks</h1>
+          <label for="myFruit">What is your favorite fruit? (With fallback)</label>
+          <input type="text" id="myFruit" name="fruit" list="fruitList" />
+
+          <datalist id="fruitList">
+            <label for="suggestion">or pick a fruit</label>
+            <select id="suggestion" name="altFruit">
+                <option>Apple</option>
+                <option>Banana</option>
+                <option>Blackberry</option>
+                <option>Blueberry</option>
+                <option>Lemon</option>
+                <option>Lychee</option>
+                <option>Peach</option>
+                <option>Pear</option>
+            </select>
+          </datalist>
+          <br>
+          <br>
+          <br>
+          <h1>Other form features</h1>
+          <h1>Progress</h1>
+          <!-- progress bar - a value that changes over time up to a max value specified by the max atttribute -->
+          <progress max="100" value="75">75/100</progress>
+          <br>
+          <br>
+          <h1>Meter</h1>
+          <!-- low and high values divide the range into three parts:
+               lower part of the range bt min and low, inclusive
+               medium part of the range bt low and high, inclusive
+               higher part of the range between the high and max values, inclusive 
+               optimum value defines which part of the range is preferred -->
+          <meter min="0" max="100" value="75" low="33" high="66" optimum="50">75</meter>
+          <br>
+          <br>
+          <br>
+          <h1>Other controls 1</h1>
+          <h2>Enter your comment</h2>
+          <ul>
+            <li>
+              <label for="name">Name:</label>
+              <input type="text" name="name" id="name">
+            </li>
+            <li>
+              <label for="comment">Comment:</label>
+              <textarea cols="35" rows="10" id="comment" maxlength="100"></textarea>
+            </li>
+            <li>
+              <button>Submit comment</button>
+            </li>
+          </ul>
+          <br>
+          <br>
+          <h1>Other controls 2</h1>
+          <ul>
+            <li>
+              <label for="food">Pick your favorite food:</label>
+              <select id="foods" name="foods">
+                <optgroup label="mains">
+                    <option>Salad</option>
+                    <option>Curry</option>
+                    <option>Pizza</option>  
+                    <option>Fajitas</option>
+                </optgroup>  
+                <optgroup label="snacks">
+                    <option>Biscuits</option>  
+                    <option>Crisps</option>  
+                    <option>Fruit</option>  
+                    <option>Breadsticks</option> 
+                </optgroup> 
+              </select>
+            </li>
+            <li>
+              <button>Submit choice</button>
+            </li>
+          </ul>
+          <br>
+          <br>
+          <h1>Other controls 3</h1>
+          <label for="food">Enter your favorite food:</label>
+          <input type="text" name="food" id="food" list="Suggestion">
+          <datalist id="Suggestion">
+            <option>Salad</option>
+            <option>Curry</option>
+            <option>Pizza</option>
+            <option>Fajitas</option>
+            <option>Biscuits</option>
+            <option>Crisps</option>
+            <option>Fruit</option>
+            <option>Breadsticks</option>
+          </datalist>
+    </form>
+    <!-- JS displays the current value and updates it as it changes -->
+    <script>
+        // store reference to the range input in price variable
+        const price = document.querySelector("#price");
+        // store reference to the output in output variable 
+        const output = document.querySelector(".price-output");
+        // output's textContent is set to current value of input
+        output.textContent = price.value;
+        // event listener is set to ensure that whenever the range
+        // slider is moved, the output's textContent is updated
+        price.addEventListener("input", () => {
+            output.textContent = price.value;
+        });    
+    </script>
+  </body>
+</html>
