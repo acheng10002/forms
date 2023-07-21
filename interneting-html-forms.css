@@ -1,0 +1,232 @@
+/* uses simple flexbox to center the header and form no matter 
+    how wide the browser window is 
+    this is the mobile-first development approach 
+    the CSS gives me a mobile layout and gives me a foundation for the desktop layout 
+    media query can be used for a fixed width desktop layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+    
+body {
+    color: #5D6063;
+    background-color: #EAEDF0;
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 16px;
+    line-height: 1.3;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+    
+.speaker-form-header {
+    text-align: center;
+    background-color: #F6F7F8;
+    border: 1px solid #D6D9DC;
+    border-radius: 3px;
+      
+    width: 80%;
+    margin: 40px 0;
+    padding: 50px;
+}
+    
+.speaker-form-header h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+/* turns the form into a box that matches the header */
+.speaker-form {
+    background-color: #F6F7F8;
+    border: 1px solid #D6D9DC;
+    border-radius: 3px;
+    
+    width: 80%;
+    padding: 50px;
+    margin: 0 0 40px 0;
+}
+
+.form-row {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+  
+/* below is an attribute selector that matches inputs with a type 
+   this lets me target text fields opposed to radio buttons 
+   
+   styles are namespaced in a .form-row descendant selector 
+   using attribute selector here */
+.form-row input[type="text"],
+.form-row input[type="email"] {
+    background-color: #FFFFFF;
+    border: 1px solid #D6D9DC;
+    border-radius: 3px;
+    width: 100%;
+    padding: 7px;
+    font-size: 14px;
+}
+  
+.form-row label {
+    margin-bottom: 15px;
+}
+
+.form-row textarea {
+    font-family: Helvetica, Arial,  sans-serif;
+    font-size: 14px;
+
+    border: 1px solid #D6D9DC;
+    border-radius: 3px;
+
+    min-height: 200px;
+    margin-bottom: 10px;
+    padding: 7px;
+    resize: none; /* disabled user's ability to resize textarea */
+}
+
+.form-row .instructions {
+    color: #999999;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+@media only screen and (min-width: 700px) {
+    .speaker-form-header,
+    .speaker-form {
+      width: 600px;
+}
+    
+    .form-row {
+        flex-direction: row; /* makes the label appear on top of its input in the mobile layout 
+        but to the left of it in the desktop layout */
+        align-items: flex-start; /* To avoid stretching */
+        margin-bottom: 20px;
+    }
+    /* using attribute selectors again to establish desktop styles */
+    .form-row input[type="text"],
+    .form-row input[type="email"],
+    .form-row select,
+    .form-row textarea {
+     width: 250px;
+     height: initial; /* resets the height to its default value as defined by the browser's user agent stylesheet */
+    }
+
+    /* make the legend line up with the label elements */
+    .form-row label {
+    text-align: right;
+    width: 120px;
+    margin-top: 7px;
+    padding-right: 20px;
+    }
+
+    .legacy-form-row {
+        margin-bottom: 10px;
+    }
+
+    .legacy-form-row legend {
+        width: 120px;
+        text-align: right;
+        padding-right: 20px;
+    }
+
+    /* I need to float everything to the left so the legend and radio labels appear ont he same line */
+    .legacy-form-row legend {
+        float: left;
+    }
+
+    /* for my desktop layout, the .instructions div needs to be underneath the textarea 
+       nudging it left by the width of the label column */
+    .form-row .instructions {
+        margin-left: 120px;
+    }
+
+    /* take 120px label column into account */
+    .form-row .checkbox-label {
+        margin-left: 120px;
+        width: auto; /* able to use width: auto because I wrapped both the checkbox and the label text, 
+                        to put the entire form field on a single line */
+    }
+
+    /* again take 120px label column into account */
+    .form-row button {
+        margin-left: 120px;
+    }
+}
+
+/* I now have a "right" and "wrong" input value, so that should be conveyed to users using :invalid and :valid pseudoclasses 
+   renders both the border and the text red when the user enters an unacceptable value */
+.form-row input[type="type"]:invalid,
+.form-row input[type="email"]:invalid {
+    border: 1px solid #D55C5F;
+    color: #D55C5F;
+    box-shadow: none; 
+}
+/* the :focus pseudoclass is similar, selects the element the user is currently filling out */
+
+/* getting rid of the default fieldset and legend styles, and then flaot the radio buttons and labels, 
+   so they appear in one line understand the legend */
+.legacy-form-row {
+    border: none;
+    margin-bottom: 40px;
+}
+
+.legacy-form-row legend {
+    margin-bottom: 15px;
+}
+
+.legacy-form-row .radio-label {
+    display: block;
+    font-size: 14px;
+    padding: 0 20px 0 10px;
+}
+
+.legacy-form-row input[type="radio"] {
+    margin-top: 2px;
+}
+
+.legacy-form-row .radio-label,
+.legacy-form-row input[type="radio"] {
+    float: left;
+}
+
+.form-row select {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    /* vendor-specific prefix for appearance property */
+    -webkit-appearance: none;
+}
+
+/* need to override the margin-bottom that is on the rest of the label elements */
+.form-row .checkbox-label {
+    margin-bottom: 0;
+}
+
+.form-row button {
+    font-size: 16px;
+    font-weight: bold;
+
+    color: #FFFFFF;
+    background-color: #5995DA;
+
+    border: none;
+    border-radius: 3px;
+
+    padding: 10px 40px;
+    cursor: pointer;
+}
+
+.form-row button:hover {
+    background-color: #76AEED;
+}
+
+.form-row button:active {
+    background-color: #407FC7;
+}
+
+
+

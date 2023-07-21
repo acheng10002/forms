@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Advanced form styling</title>
+    <link rel="stylesheet" href="advanced-styling-tasks.css">
+  </head>
+  <body>
+    <form>
+        <h1>Advanced form styling 1</h1>
+        <div class="one">
+            <input type="search" name="search" id="search" aria-label="Search our site">
+            <!-- step 6 - attach the mag glass --> 
+            <img src="search-24px.png" alt="magnifiying glass">
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="two">
+        <h1>Advanced form styling 2</h1>
+        <fieldset>
+            <legend>Who is your favorite pony?</legend>
+            <ul>
+              <li>
+                <input type="radio" id="pinkie" name="pony" value="pinkie">
+                <label for="pinkie">Pinkie Pie</label>
+              </li>
+              <li>
+                <input type="radio" id="rainbow" name="pony" value="rainbow">
+                <label for="rainbow">Rainbow Dash</label>
+              </li>
+              <li>
+                <input type="radio" id="twilight" name="pony" value="twilight">
+                <label for="twilight">Twilight Sparkle</label>
+              </li>
+            </ul>
+        </fieldset>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="three">
+        <h1>Advanced form styling 3</h1>
+        <fieldset id="styling3">
+            <legend id="three">Feedback form</legend>
+    
+            <p>Required fields are labelled with "required".</p>
+            <div>
+              <label for="fname" class="feedback">First name: </label>
+              <input id="fname" name="fname" type="text" class="feedback input" required>
+              <span></span>
+            </div>
+            <div>
+              <label for="lname" class="feedback">Last name: </label>
+              <input id="lname" name="lname" type="text" class="feedback input" required>
+              <span></span>
+            </div>
+            <div>
+              <label for="email" class="feedback">Email address: </label>
+              <input id="email" name="email" type="email" class="feedback input">
+              <span></span>
+            </div>
+            <div><button>Submit</button></div>
+        </fieldset>
+    </form>
+  </body>
+</html>

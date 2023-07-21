@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Interneting HTML forms</title>
+    <link rel="stylesheet" href="interneting-html-forms.css"
+  </head>
+  <body>
+    <header class='speaker-form-header'>
+        <h1>Speaker Submission</h1>
+        <p><em>Want to speak at our fake conference? Fill out this form.</em></p>
+      </header>
+      <!-- action defines the URL that processes the form (special URL defined by my web server that knows how to process data)
+           common backend: Node.js, PHP< Ruby on Rails 
+           method defines how the form is submitted to the backend 
+           use post when I'm changing data on the server 
+           use get when I'm getting data 
+           leaving the action blank, tells the form to submit to 
+           the same URL; combining with get lets me inspect the
+           contents of the form -->
+      <form action="" method="get" class="speaker-form">
+        <!-- use div to separate input elements -->
+        <div class="form-row">
+            <!-- label is semantic HTML, like <article> or <figcaption> -->
+            <label for="full-name">Name</label>
+            <!-- inputs can change appearance based on their type attribute -->
+            <!-- ID selectors are bad? -->
+            <!-- ID elements are like variables that get sent to the backend 
+                 name attribute is the name of the variable -->
+            <input id="full-name" name="full-name" type="text"/>
+        </div>
+        <div class="form-row">
+            <!-- type attribute lets me do basic input validation 
+                 input element that only accepts email addresses 
+                 required, minlength, maxlength, and pattern attributes -->
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="joe@example.com">
+        </div>
+        <!-- radio buttons always operate in groups, letting the user choose one of many predefined options 
+             fieldset groups the radio buttons, and legend labels the entire group 
+             each radio button in a group should have the same name attribute
+             each radio button should have different value attributes -->
+        <!-- using a different class here because fieldset doesn't support flexbox, using floats instead-->
+        <fieldset class="legacy-form-row">
+            <legend>Type of Talk</legend>
+            <!-- radio buttons have an explicit value attribute because the users can't enter custom values into a radio button, unlike text fields
+                 the value in the value attribute is what gets sent to the server when the user submits the form -->
+            <input type="radio" id="talk-type-1" name="type-type" value="main-stage">
+            <label for="talk-type-1" class="radio-label">Main Stage</label>
+            <input type="radio" id="talk-type-2" name="talk-type" value="workshop" checked>
+            <label for="talk-type-2" class="radio-label">Workshop</label>
+        </fieldset>
+        <div class="form-row">
+            <label for="t-shirt">T-Shirt Size</label>
+            <!-- same as radio buttons, the name and value attributes get passed to the backend 
+                 behavior of dropdowns changes significantly across devices 
+                 it's best to let the browser/device determine the best way to preset a selec element -->
+            <!-- Bootstrap Dropdowns and jQuery Selectmenus are common JS solutions for customizing select menus -->
+            <select name="t-shirt" id="t-shirt">
+                <option value="xs">Extra Small</option>
+                <option value="s">Small</option>
+                <option value="m">Medium</option>
+                <option value="l">Large</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="abstract">Abstract</label>
+            <!-- textarea is not self-closing and doesn't have a value attribute -->
+            <textarea name="abstract" id="abstract" cols="30" rows="10"></textarea>
+            <div class="instructions">Describe your talk in 500 words or less</div>
+        </div>
+        <div class="form-row">
+            <!-- wrapping the input with its label will make it easier to match the desired layout-->
+            <label class="checkbox-label" for="available">
+            <input id="available" name="available" type="checkbox" value="is-available">
+            <span>I'm actually available the day of the talk</span>
+            </label>
+        </div>
+        <div class="form-row">
+            <!-- clicking the button tells the browser to validate all of the inputs in the form and submit it to the action
+                 URL -->
+            <!-- if inputs are valid, and submit clicked, everything after the ? represents the variables in my form 
+                 each input's name attribute is followed by an equal sign, then its value, and each variable is separated by 
+                 an & character 
+                 backend server could pull out all this info, query a database, and let me know whetehr the form submission was
+                 successful or not -->
+            <button>Submit</button>
+        </div>
+      </form>
+ </body>
+</html>

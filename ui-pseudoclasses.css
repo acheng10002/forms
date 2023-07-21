@@ -1,0 +1,231 @@
+body {
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 20px auto;
+    max-width: 460px;
+}
+
+fieldset {
+    padding: 10px 30px 0;
+    margin-bottom: 20px;
+}
+
+legend {
+    color: white;
+    background: black;
+    padding: 5px 10px;
+}
+
+fieldset > div {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+button, label, input[type="text"], textarea {
+    display: block;
+    font-family: inherit;
+    font-size: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 5px;
+    height: 30px;
+}
+
+input[type="text"], textarea {
+    width: 50%
+}
+
+textarea {
+    height: 110px;
+    resize: none;
+}
+
+label {
+    width: 40%;
+}
+
+input:hover, input:focus, textarea:hover, textarea:focus {
+    background-color: #eee;
+}
+
+button {
+    width: 60%;
+    margin: 20px auto;
+}
+
+/* styled the form controls using :read-only and :read-pseudoclasses */
+:is(input:read-only, input:-moz-read-only, textarea:-moz-read-only, textarea:read-only) {
+    border: 0;
+    box-shadow: none;
+    background-color: white;
+}
+
+:is(textarea:-moz-read-write, textarea:read-write) {
+    box-shadow: inset 1px 1px 3px #ccc;
+    border-radius: 5px;
+ }
+
+/* style the parent div to become a flex container and also tell it to wrap its contents onto new lines if the content
+   becomes too long 
+   label and input will sit on separate lines because they are both width: 100%, but the span has a width of 0,
+   so it can sit on the same line as the input */
+fieldset > div {
+    margin-bottom: 20px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+p {
+    height: 40px;
+}
+
+input + span {
+    /* span has a position: relative so that I can set the generated content to position: absolute, and I can position it
+       relative to the span rather than the body */
+    position: relative;
+}
+
+input + span::after {
+    font-size: 0.7rem;
+    position: absolute;
+    padding: 5px 10px;
+    top: -26px;
+}
+  
+/* input:required + span::after {
+    font-size: 0.7rem;
+    position: absolute;
+    content: "required";
+    color: white;
+    background-color: black;
+    padding: 5px 10px;
+    top: -26px;
+    left: -70px;
+} */
+
+input:required + span::after {
+    color: white;
+    background-color: black;
+    content: "Required";
+    left: -70px;
+}
+
+/* separate ::after content for :required and :out-of-range states their own content and styling */
+input:out-of-range + span::after {
+    color: white;
+    background-color: red;
+    width: 155px;
+    content: "Outside allowable value range";
+    left: -182px;
+}
+
+input:required {
+    border: 1px solid black;
+}
+  
+input:optional {
+    border: 1px solid silver;
+}
+
+input[type="radio"] {
+    appearance: none;
+}
+
+input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: 2px solid gray;
+    /* adjusts the position of the buttons on the text baseline */
+    vertical-align: -2px;
+    outline: none;
+}
+
+/* build the styling for a radio button's inner circle using the ::before pseudoelement 
+   set a scale(0) transform on it 
+   use a transition to make the generated content on the label nicely animate into view when the radio is selected/checked 
+   transform-origin lets me make it grow from the center of the circle*/
+input[type="radio"]::before {
+    display: block;
+    content: " ";
+    width: 10px;
+    height: 10px;
+    border-radius: 6px;
+    background-color: red;
+    font-size: 1.2em;
+    transform: translate(3px, 3px) scale(0);
+    transform-origin: center;
+    transition: all 0.3s ease-in;
+}
+  
+input[type="radio"]:checked::before {
+    transform: translate(3px, 3px) scale(1);
+    transition: all 0.3s cubic-bezier(0.25, 0.25, 0.56, 2);
+}
+
+input + span {
+    position: relative;
+}
+  
+input + span::before {
+    position: absolute;
+    right: -20px;
+    top: 5px;
+}
+  
+input:invalid {
+    border: 2px solid red;
+}
+ 
+/* absolutely position different generated content depending on whether the form's data is valid or invalid */
+input:invalid + span::before {
+    content: "✖";
+    color: red;
+}
+  
+  input:valid + span::before {
+    content: "✓";
+    color: green;
+}
+
+input[type="text"]:disabled {
+    background: #eee;
+    border: 1px solid #ccc;
+}
+  
+.disabled-label {
+    color: #aaa;
+}
+
+input ~ span {
+    position: relative;
+}
+ 
+/* checked attribute attached to first input, so it is selected by default */
+input:default ~ span::after {
+    font-size: 0.7rem;
+    position: absolute;
+    content: "Default";
+    color: white;
+    background-color: black;
+    padding: 5px 10px;
+    right: -65px;
+    top: -3px;
+}
+
+/* for the :indeterminate example, no default selected radio button */
+input[type="radio"]:indeterminate {
+    outline: 2px solid red;
+    animation: 0.4s linear infinite alternate outline-pulse;
+}
+  
+@keyframes outline-pulse {
+    from {
+      outline: 2px solid red;
+    }
+  
+    to {
+      outline: 6px solid red;
+    }
+}

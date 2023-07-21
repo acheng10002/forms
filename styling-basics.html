@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Styling basics</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+      }
+
+      h2 {
+        margin-left: 175px;
+      }
+
+      button {
+        display: inline-block;
+      }
+
+      #button {
+        margin-top: 15px;
+        margin-left: 165px;
+      }
+
+      button,
+      input,
+      select,
+      label {
+        font-family: inherit; /* causes the value to match the computed value of the property of its parent element */
+        font-size: 100%;
+
+        /* to give the same size to several different widgets */
+        width: 150px;
+        padding: 0;
+        margin: 10px;
+      }
+
+      label {
+        width: 110px;
+      }
+
+      .input-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-left: 0;
+      }
+
+      .input-container label {
+        margin-right: 45px;
+        white-space: nowrap;
+      } 
+
+      body {
+        background-color: #fff;
+        color: #333;
+        font: 1em / 1.4 Helvetica Neue, Helvetica, Arial, sans-serif;
+        padding: 1em;
+        margin: 0;
+        width: 500px;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <form>
+      <h2>Edit your preferences</h2>
+      <ul>
+        <li class="input-container">
+          <label for="e-mail">Email:</label>
+          <input type="email" id="e-mail" name="e-mail">
+        </li>
+        <li class="input-container">
+          <label for="website">Website:</label>
+          <input type="url" id="website" name="website">
+        </li>
+        <li class="input-container">
+          <label for="phone">Phone number:</label>
+          <input type="tel" id="phone" name="phone">
+        </li>
+        <li class="input-container">
+          <label for="food">Favorite food:</label>
+          <select name="food" id="food">
+            <option>Salad</option>
+            <option>Curry</option>
+            <option>Pizza</option>
+            <option>Fajitas</option>
+          </select>
+        </li>
+        <li id="button">
+          <button>Update preferences</button>
+        </li>
+      </ul>
+    </form>
+  </body>
+
+</html>

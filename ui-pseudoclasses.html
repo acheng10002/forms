@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>UI pseudoclasses</title>
+    <link rel="stylesheet" href="ui-pseudoclasses.css">
+  </head>
+  <body>
+    <form>
+        <h1>Styling inputs based on whether they're required or not</h1>
+        <!-- input, select, and textarea have a required attribute -->
+        <fieldset>
+            <legend>Feedback form</legend>
+            <p>Required fields are labeled with "required".</p>
+            <div>
+              <label for="fname">First name: </label>
+              <!-- I'll see client-side validation error messages if I try to submit the form without filling in required inputs -->
+              <input id="fname" name="fname" type="text" required />
+              <span></span>
+            </div>
+            <br>
+            <div>
+              <label for="lname">Last name: </label>
+              <input id="lname" name="lname" type="text" required />
+              <span></span>
+            </div>
+            <br>
+            <div>
+                <label for="age">Age (must be 12+): </label>
+                <input id="age" name="age" type="number" min="12" max="120" required />
+                <span></span>
+            </div>
+            <div>
+              <label for="email">
+                Email address (include if you want a response):
+              </label>
+              <input id="email" name="email" type="email" />
+            </div>
+            <div><button>Submit</button></div>
+        </fieldset>
+        <br>
+        <br>
+        <br>
+        <h1>Using generated content with pseudoclasses</h1>
+        <fieldset>
+            <legend>Choose your favorite fruit</legend>
+            <p>
+                <input type="radio" name="fruit" value="cherry" id="cherry">
+                <label for="cherry">Cherry</label>   
+                <span></span>
+            </p>
+            <br>
+            <p>
+                <label>
+                <input type="radio" name="fruit" value="banana">
+                    Banana
+                </label>
+            </p>
+            <p>
+                <label>
+                <input type="radio" name="fruit" value="strawberry">
+                    Strawberry
+                </label>
+            </p>
+        </fieldset>
+        <br>
+        <br>
+        <br>
+        <h1>Styling controls based on whether their data is valid</h1>
+        <br>
+        <div>
+            <label for="fname">First name *: </label>
+            <input id="fname" name="fname" type="text" required />
+            <span></span>
+        </div>
+        <br>
+        <br>
+        <br>
+        <h1>Styling enabled and disabled inputs</h1>
+        <fieldset id="shipping">
+            <legend>Shipping address</legend>
+            <div>
+              <label for="name1">Name: </label>
+              <input id="name1" name="name1" type="text" required />
+            </div>
+            <div>
+              <label for="address1">Address: </label>
+              <input id="address1" name="address1" type="text" required />
+            </div>
+            <div>
+              <label for="pcode1">Zip/postal code: </label>
+              <input id="pcode1" name="pcode1" type="text" required />
+            </div>
+          </fieldset>
+          <fieldset id="billing">
+            <legend>Billing address</legend>
+            <div>
+              <label for="billing-checkbox">Same as shipping address:</label>
+              <input type="checkbox" id="billing-checkbox" checked />
+            </div>
+            <div>
+              <label for="name" class="billing-label disabled-label">Name: </label>
+              <input id="name" name="name" type="text" disabled required />
+            </div>
+            <div>
+              <label for="address2" class="billing-label disabled-label">
+                Address:
+              </label>
+              <input id="address2" name="address2" type="text" disabled required />
+            </div>
+            <div>
+              <label for="pcode2" class="billing-label disabled-label">
+                Zip/postal code:
+              </label>
+              <input id="pcode2" name="pcode2" type="text" disabled required />
+            </div>
+        </fieldset>
+        
+        <div><button>Submit</button></div>
+    <script>
+        // Toggle the disabling of the bill address fields
+        // Wait for the page to finish loading
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+            // Attach `change` event listener to checkbox
+            // Use change event to let the user enable.disable the billing fields 
+            // and toggle the styling of the associated labels
+            document
+                .getElementById("billing-checkbox")
+                .addEventListener("change", toggleBilling);
+            },
+            false,
+        );
+
+        function toggleBilling() {
+            // Select the billing text fields
+            const billingItems = document.querySelectorAll('#billing input[type="text"]');
+            // Select the billing text labels
+            const billingLabels = document.querySelectorAll(".billing-label");
+
+            // Toggle the billing text fields and labels
+            for (let i = 0; i < billingItems.length; i++) {
+                billingItems[i].disabled = !billingItems[i].disabled;
+
+                if (
+                    billingLabels[i].getAttribute("class") === "billing-label disabled-label"
+                ) {
+                    billingLabels[i].setAttribute("class", "billing-label");
+                } else {
+                    billingLabels[i].setAttribute("class", "billing-label disabled-label");
+                }
+            }
+        }
+    </script>
+    <br>
+    <br>
+    <br>
+    <h1>Read-only and read-write</h1>
+    <fieldset>
+        <legend contenteditable="true">Check shipping details</legend>
+        <div>
+          <label for="name">Name: </label>
+          <input id="name" name="name" type="text"
+                 value="Mr Soft" readonly>
+        </div>
+        <div>
+          <label for="address">Address: </label>
+          <textarea id="address" name="address" readonly>
+            23 Elastic Way,
+            Viscous,
+            Bright Ridge,
+            CA
+          </textarea>
+        </div>
+        <div>
+          <label for="pcode">Zip/postal code: </label>
+          <input id="pcode" name="pcode" type="text"
+                 value="94708" readonly>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Final instructions</legend>
+        <div>
+          <label for="sms-confirm">Send confirmation by SMS?</label>
+          <input id="sms-confirm" name="sms-confirm" type="checkbox">
+        </div>
+        <div>
+          <label for="instructions">Any special instructions?</label>
+          <textarea id="instructions" name="instructions"></textarea>
+        </div>
+      </fieldset>
+
+      <div><button type="button">Amend details</button></div>
+      <div><button type="submit">Submit</button></div>
+    </form>
+  </body>
+</html>

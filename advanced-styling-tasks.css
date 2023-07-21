@@ -1,0 +1,172 @@
+body {
+    background-color: #fff;
+    color: #333;
+    font: 1em / 1.4 Helvetica Neue, Helvetica, Arial, sans-serif;
+    padding: 1em;
+    margin: 0;
+}
+  
+* {
+    box-sizing: border-box;
+}
+  
+button,
+input,
+select {
+    font-family: inherit;
+    font-size: 100%;
+    padding: 0; 
+    margin: 0;
+}
+
+.one {
+    /* step 6 - gets mag glass to be to the right of search box */
+    display: flex;
+    gap: 0.4em;
+    height: 24px;
+}
+
+input[type="search"] {
+    /* step 2 - remove native OS styling with appearance: none */
+    -moz-appearance: none; /* mozilla engine */
+    -webkit-appearance:none; /* safari engine */
+    appearance: none;
+    /* step 1 - giving the search box consistent width, height, padding, and border color across browsers */
+    border: 1px solid silver;
+    border-radius: 1em;
+    width: 12.5em;
+    height: 1.5em;
+}
+
+input[type="search"]:focus {
+    /* step 4 - blue focus outline is inconsistent across browsers, so removing it here */
+    outline: none;
+}
+
+input[type="search"]:hover {
+    /* steps 3 & 5 - add styling back in so users can tell when the search box is being hovered or focused */
+    padding-left: 0.5em;
+    border: 2px orange solid;
+    border-radius: 1em;
+}
+
+.two,
+.three {
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+
+input[type="radio"] {
+    /* step 1 - get rid of the radio buttons default styling */
+    appearance: none;
+}
+
+input[type="radio"] {
+    /* step 2 - give radios a reasonable base style */
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: 2px solid gray;
+    /* step 4 - adjusts the position of the buttons on the text baseline */
+    vertical-align: -13px;
+    margin: 8px;
+    position: relative; 
+}
+
+input[type="radio"]::before {
+    /* step 3 - give radios a different style for when they are selected */
+    position: absolute;
+    display: block;
+    content: " ";
+    width: 10px;
+    height: 10px;
+    border-radius: 6px;
+    background-color: blueviolet;
+    font-size: 1.2em;
+    transform: translate(3px, 3px) scale(0);
+    transform-origin: center;
+    transition: all 0.3s ease-in;
+}
+
+input[type="radio"]:checked::before {
+    /* step 3 - give radios a different style for when they are selected */
+    transform: translate(3px, 3px) scale(1);
+    transition: all 0.3s cubic-bezier(0.25, 0.25, 0.56, 2);
+}
+
+:root {
+    --invalid-red: #FF7575;
+    --valid-green: #16ce16;
+}
+
+#styling3 {
+    padding: 10px 30px 0;
+    width: 400px;
+}
+
+#three {
+    color: white;
+    background: black;
+    padding: 5px 10px;
+}
+
+.feedback {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    height: 30px;
+}
+
+fieldset > div {
+    margin-bottom: 20px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.input {
+    box-shadow: inset 1px 1px 3px #ccc;
+    border-radius: 5px;
+}
+
+.input:hover,
+.input:focus {
+    background-color: #eee;
+}
+
+button {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.input + span {
+    position: relative;
+}
+
+.input:required + span::after {
+    box-sizing: border-box;
+    content: "required";
+    position: absolute;
+    top: -2.5em;
+    right: 0.1em;
+    font-size: 0.8em;
+    background-color: black;
+    color: var(--invalid-red);
+    padding: 0.4em;
+    border-radius: 0.4em;
+}
+
+.input:invalid {
+    border: 1px var(--invalid-red) solid;
+}
+
+.input:valid {
+    border: 2px var(--valid-green) solid;
+}
+
+.input:valid + span::after {
+    color: var(--valid-green);
+}
