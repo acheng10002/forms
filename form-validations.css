@@ -1,0 +1,54 @@
+input {
+    border: 2px solid #000;
+    margin-bottom: 15px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+input:invalid {
+    border-color: red;
+    box-shadow: 0 0 5px 1px red;
+}
+
+input:focus:invalid {
+    box-shadow: none;
+}
+
+/* email and URL inputs will initially have a green border since they are not required fields and are valid */
+input:valid {
+    border-color: green;
+}
+
+#choose:invalid {
+    /* red dashed border when input is invalid */
+    border: 2px dashed red;
+}
+
+#choose:invalid:required {
+    /* background gradient when the input is required and invalid */
+    background-image: linear-gradient(to right, pink, lightgreen);
+}
+
+#choose:valid {
+    /* black border when input is valid */
+    border: 2px solid black;
+}
+
+form {
+    font: 1em sans-serif;
+    max-width: 320px;
+}
+
+p > label {
+    display:block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea,
+fieldset {
+    width: 100%;
+    border: 1px solid #333;
+    box-sizing: border-box;
+}
